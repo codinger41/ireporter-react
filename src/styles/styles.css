@@ -53,7 +53,6 @@ footer {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 4vw;
 }
 
@@ -158,6 +157,17 @@ footer {
   height: 440px;
 }
 
+.index-row {
+  display: flex;
+  flex: 0 1 auto; 
+  flex-direction: row;
+  background: #1C6663;
+  border: 1px solid #ddd;
+  text-align: center;
+  width: 900px;
+  height: 440px;
+}
+
 .left-box {
   height: 440px;
   width: 500px;
@@ -169,12 +179,12 @@ footer {
   flex: 0 1 auto; 
   flex-direction: column;
   padding: 46px;
-  background-color:#ffffff;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 20px;
   text-align: center;
-  width: 400px;
+  width: 350px;
   height: 400px;
-  justify-content: center;
-  border-radius: 50px
 }
 
 input {
@@ -217,7 +227,6 @@ input {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 3vw;
 }
 
@@ -230,12 +239,12 @@ input {
   background-color: #053D48;
   align-items: center;
   justify-content: center;
+  position: fixed
 }
 
 .footer-text {
   text-align: center;
   color: #ffffff;
-  font-family: 'OperatorMono';
   margin-top: 10px
 }
 
@@ -243,14 +252,12 @@ input {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 28px
 }
 
 .description-long {
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 17px
 }
 
@@ -286,7 +293,7 @@ img {
 .card-wrap {
   float:left;
   width:100%;
-  padding:5px;
+  padding:15px;
 }
 @media (min-width: 500px) {
   .card-wrap {
@@ -365,29 +372,23 @@ img {
   right: 0;
   display: flex;
   top: 100px;
+  justify-content: space-between;
 }
 
 .type {
   color: rgb(165, 0, 0);
   font-size: 14px;
-  font-family: Operatormono;
   margin-left: 10px
 }
 
-.select-status {
-  position: absolute;
-  top: 450px;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-}
 
 select {
   background: transparent;
   border: none;
   font-size: 14px;
   height: 29px;
-  width: 268px;
+  width: 255px;
+  margin-right: 10px;
   color: aliceblue;
 }
 
@@ -400,6 +401,7 @@ select {
   color: aliceblue;
   border-radius: 20px;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .status-update-button {
@@ -507,7 +509,8 @@ select {
   height: 70px;
   top: 80px;
   left: 5px;
-  margin-top: 10px
+  margin-top: 10px;
+  margin-left: 15px
 }
 
 .stat-box {
@@ -538,18 +541,6 @@ select {
 .stat-text {
   font-size: 10px;
   color: aliceblue
-}
-
-.new-record {
-  display: flex;
-  flex: 0 1 auto; 
-  flex-direction: column;
-  padding: 46px;
-  background-color:#ffffff;
-  text-align: center;
-  width: 500px;
-  height: 540px;
-  border-radius: 30px;
 }
 
 .dropdown {
@@ -584,11 +575,18 @@ and (min-width : 321px) {
     .selects {
       height: 29px;
       overflow: hidden;
-      width: 25vw;
+      width: 32vw;
       background-color: #053D48;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+    }
+    .select-status {
+      position: absolute;
+      top: 1010px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
     }
 }
 
@@ -596,10 +594,10 @@ and (min-width : 321px) {
 @media only screen 
 and (max-width : 320px) {
     /* Styles */
-    .selects {
+    .selects-modal {
       height: 29px;
       overflow: hidden;
-      width: 30vw;
+      width: 41vw;
       background-color: #053D48;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
@@ -608,6 +606,13 @@ and (max-width : 320px) {
     .modal-content {
       display: flex;
       flex-direction: column;
+    }
+    .select-status {
+      position: absolute;
+      top: 1010px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
     }
 }
 
@@ -626,6 +631,13 @@ and (max-device-width : 1024px) {
       border-radius: 20px;
     }
     .modal-content {
+      display: flex;
+      flex-direction: row;
+    }
+    .select-status {
+      position: absolute;
+      top: 450px;
+      right: 0;
       display: flex;
       flex-direction: row;
     }
@@ -650,6 +662,13 @@ and (orientation : landscape) {
       display: flex;
       flex-direction: row;
     }
+    .select-status {
+      position: absolute;
+      top: 450px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+    }
 }
 
 /* iPads (portrait) ----------- */
@@ -671,6 +690,19 @@ and (orientation : portrait) {
     display: flex;
     flex-direction: row;
   }
+  .select-status {
+    position: absolute;
+    top: 450px;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+
+.bg-img {
+  height: 440px;
+  width: 500px;
 }
 
 /* Desktops and laptops ----------- */
@@ -685,8 +717,16 @@ and (min-width : 1224px) {
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+      margin: 5px
     }
     .modal-content {
+      display: flex;
+      flex-direction: row;
+    }
+    .select-status {
+      position: absolute;
+      top: 460px;
+      right: 0;
       display: flex;
       flex-direction: row;
     }
@@ -696,7 +736,13 @@ and (min-width : 1224px) {
 @media only screen 
 and (min-width : 1824px) {
     /* Styles */
-
+    .select-status {
+      position: absolute;
+      top: 450px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+    }
 }
 
 /* iPhone 4 ----------- */
