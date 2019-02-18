@@ -1,21 +1,14 @@
-// import React from 'react';
-// import { Route, IndexRoute } from 'react-router';
-// import App from './containers/App';
-// import NotFoundPage from './containers/NotFoundPage.js';
-// import LoginPage from './containers/LoginPage';
-// import FormPage from './containers/FormPage';
-// import TablePage from './containers/TablePage';
-// import Dashboard from './containers/DashboardPage';
+/* eslint-disable import/no-unresolved */
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Home from './containers/home';
 
-// export default (
-//   <Route>
-//     <Route path="login" component={LoginPage}/>
-//     <Route path="/" component={App}>
-//       <IndexRoute component={Dashboard}/>
-//       <Route path="dashboard" component={Dashboard}/>
-//       <Route path="form" component={FormPage}/>
-//       <Route path="table" component={TablePage}/>
-//       <Route path="*" component={NotFoundPage}/>
-//     </Route>
-//   </Route>
-// );
+const Router = () => (
+  <div>
+    <Switch>
+      <Route path='/' component={Home} />
+    </Switch>
+  </div>
+)
+
+export default Router;
