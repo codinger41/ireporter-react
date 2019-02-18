@@ -6,6 +6,7 @@ import Signup from "./containers/signup";
 import Signin from "./containers/signin";
 import Admin from "./containers/admin";
 import Profile from './containers/profile';
+import NewRecord from "./containers/new-record";
 
 const Router = () => (
   <div>
@@ -15,6 +16,7 @@ const Router = () => (
       <Route exact path="/signin" component={Signin} />
       <Route exact path="/admin" component={Admin} />
       <Route exact path="/profile" component={Profile} />
+      <Route exact path="/new-record" component={NewRecord} />
     </Switch>
   </div>
 );
