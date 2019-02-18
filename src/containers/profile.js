@@ -4,19 +4,19 @@ import Stats from "../components/dashboard-stats";
 import Filter from "../components/dashboard-filter";
 import Card from "../components/card";
 
-const Admin = () => {
+const Profile = () => {
   return (
     <div className="body">
       <Stats />
       <Filter />
       <div className="card-grid">
-        <Card user="admin"/>
-        <Card user="admin"/>
-        <Card user="admin"/>
-        <Card user="admin"/>
+        <Card user="owner"/>
+        <Card user="owner"/>
+        <Card user="owner"/>
+        <Card user="owner"/>
       </div>
     </div>
   );
 };
 
-export default Admin;
+export default Profile;

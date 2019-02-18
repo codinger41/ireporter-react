@@ -7,6 +7,7 @@ import Routes from "./routes";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import "./styles/styles.css";
+import "font-awesome/css/font-awesome.css";
 
 const App = () => {
   return (
