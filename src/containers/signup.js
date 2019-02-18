@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Signup = () => {
   return (
-    <div className='boxes'>
-      <div className='welcome-box'>
-        <h1 className='welcome'> Welcome to iReporter!</h1>
+    <div className="boxes">
+      <div className="welcome-box">
+        <h1 className="welcome"> Welcome to iReporter!</h1>
       </div>
       <form className="login-box">
         <h2> Sign Up </h2>
@@ -32,7 +32,7 @@ const Signup = () => {
           </button>
         </div>
         <div className="socials">
-          <p>Already have an account? <Link to='/signin'> Sign In </Link></p>
+          <p>Already have an account? <Link to="/signin"> Sign In </Link></p>
         </div>
       </form>
     </div>
