@@ -1,7 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+
+const fields = [
+  { name: 'name', placeholder: 'name', type: 'text' },
+  { name: 'email', placeholder: 'email', type: 'email' },
+  { name: 'phone', placeholder: 'phone', type: 'tel' },
+  { name: 'password', placeholder: 'password', type: 'password' },
+  { name: 'confirmPassword', placeholder: 'confirm password', type: 'password' },
+];
+
+
 const Signup = () => {
+  const [ userData, setUserData ] = useState({
+    email: null,
+    phone: null,
+    password: null,
+    confirmPassword: null
+  });
+
+  const updateInput = e => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="boxes">
       <div className="welcome-box">
@@ -9,21 +30,18 @@ const Signup = () => {
       </div>
       <form className="login-box">
         <h2> Sign Up </h2>
-        <input 
-          type="email"
-          placeholder="Email"
-          required
-        />
-        <input 
-          type="tel"
-          placeholder="Phone"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          required
-        />
+          {
+            fields.map((field, index) => (
+              <input
+                key={index}
+                type={field.type}
+                name={field.name}
+                placeholder={field.placeholder}
+                required
+                onChange={updateInput}
+              />
+            ))
+          }
         <div className="btns">
           <button
             className="auth-button"
