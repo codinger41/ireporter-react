@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { callApi } from "../actions/callApi";
 
-const Home = () => {
+
+const Home = props => {
+  const callData = () => props.callApi().then(res => console.log(res))
+
+  useEffect(() => {
+    callData();
+  }, []);
+
   return(
     <div className="boxes">
       <div className="welcome-box">
@@ -20,4 +29,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default connect(() => ({}), { callApi })(Home);
