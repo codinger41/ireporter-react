@@ -1,4 +1,4 @@
-import { SIGN_UP, SIGN_IN } from '../actions/actionTypes';
+import { SIGN_UP, SIGN_IN, CURRENT_USER, LOGOUT } from '../actions/actionTypes';
 
 const initialState = {
   user: {}
@@ -10,6 +10,10 @@ export default (state = initialState, action = {}) => {
       return { user: action.user };
     case SIGN_IN:
       return { user: action.user };
+    case CURRENT_USER:
+      return { user: action.user };
+    case LOGOUT:
+      return { user: {} };
     default: return state;
   }
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SIGN_UP, SIGN_IN } from './actionTypes';
+import { SIGN_UP, SIGN_IN, LOGOUT } from './actionTypes';
 
 const apiUrl = 'http://localhost:4000';
 
@@ -41,5 +41,15 @@ export const signinUser = userData => {
       })
       return error.response.data
     }
+  }
+}
+
+export const logOut = () => {
+  return async (dispatch) => {
+    localStorage.removeItem('token');
+    dispatch({
+      type: LOGOUT,
+      user: {}
+    });
   }
 }
