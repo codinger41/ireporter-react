@@ -40,8 +40,8 @@ const Signup = props => {
     props.signupUser(userData).then(res => {
       const { error } = res;
       if (error) {
+        setLoading(false);
         if(Array.isArray(error)) {
-          setLoading(false)
           return error.forEach(err => props.failureToast(err));
         } else {
           return props.failureToast(error);
@@ -49,7 +49,7 @@ const Signup = props => {
       } else {
         setLoading(false)
         props.successToast('Sign up Successful!');
-        window.location.href = '/profile';
+        props.history.push('/profile');
       }
     });
   };
