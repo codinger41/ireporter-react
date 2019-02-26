@@ -1,13 +1,13 @@
-import { CALL_API } from '../actions/actionTypes';
+import { SIGN_UP } from '../actions/actionTypes';
 
 const initialState = {
-  records: []
+  user: {}
 };
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {
-    case CALL_API:
-      return { ...state, records: action.data.data };
+    case SIGN_UP:
+      return { ...state, user: action.user };
     default: return state;
   }
 };
