@@ -65,7 +65,7 @@ const Signup = props => {
         props.failureToast(`${field[0]} is required.`);
       }
     });
-    return errors.length < 1 ? completeSignup() : null;
+    return errors.length < 1 ? completeSignup() : setLoading(false);
   };
 
 
