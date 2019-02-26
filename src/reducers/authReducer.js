@@ -9,7 +9,6 @@ export default (state = initialState, action = {}) => {
     case SIGN_UP:
       return { user: action.user };
     case SIGN_IN:
-      console.log(action)
       return { user: action.user };
     default: return state;
   }

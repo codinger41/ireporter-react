@@ -3,13 +3,7 @@ import { connect } from "react-redux";
 import { callApi } from "../actions/callApi";
 
 
-const Home = props => {
-  const callData = () => props.callApi().then(res => console.log(res))
-
-  useEffect(() => {
-    callData();
-  }, []);
-
+const Home = () => {
   return(
     <div className="boxes">
       <div className="welcome-box">

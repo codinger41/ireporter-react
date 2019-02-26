@@ -36,8 +36,6 @@ const Signin = props => {
           return props.failureToast(error);
         }
       } else {
-        setLoading(false)
-        props.successToast('Sign up Successful!');
         props.history.push('/profile');
       }
     });

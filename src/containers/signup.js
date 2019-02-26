@@ -47,8 +47,6 @@ const Signup = props => {
           return props.failureToast(error);
         }
       } else {
-        setLoading(false)
-        props.successToast('Sign up Successful!');
         props.history.push('/profile');
       }
     });
@@ -86,7 +84,7 @@ const Signup = props => {
                 name={field.name}
                 placeholder={field.placeholder}
                 required
-                onChange={updateInput}
+                onChange={(e) => updateInput(e)}
               />
             ))
           }
