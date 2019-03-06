@@ -1,3 +1,5 @@
+/* eslint-disable import/namespace */
+/* eslint-disable import/named */
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
