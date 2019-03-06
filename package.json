@@ -21,7 +21,7 @@
     "test:watch": "npm run test -- --watch",
     "open:cover": "npm run test:cover && open coverage/index.html"
   },
-  "author": "Rafael Zeffa",
+  "author": "Olamilekan",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
