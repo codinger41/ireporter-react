@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { callApi } from "../actions/callApi";
 
 
 const Home = () => {
@@ -13,7 +12,7 @@ const Home = () => {
         <img src={require("../images/background.jpg")} className="bg-img"/>
         <div className="left-box">
           <div>
-            <i className="fa fa-bullhorn icon"></i>
+            <i className="fa fa-bullhorn icon"/>
             <h1 className="description">iReporter</h1>
             <h2 className="description-long">Let"s end corruption.</h2>
           </div>
@@ -23,4 +22,4 @@ const Home = () => {
   );
 };
 
-export default connect(() => ({}), { callApi })(Home);
+export default connect(() => ({}), {})(Home);

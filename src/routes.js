@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import Home from "./containers/home";
 import Signup from "./containers/signup";
 import Signin from "./containers/signin";
-import Admin from "./containers/admin";
 import Profile from './containers/profile';
 import NewRecord from "./containers/new-record";
 import RequiresAuth from "./components/authWrapper";

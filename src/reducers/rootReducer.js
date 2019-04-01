@@ -1,9 +1,8 @@
 import { combineReducers } from 'redux';
-import callApiReducer from './callApiReducer';
 import authReducer from './authReducer';
-
+import recordsReducer from './recordsReducer';
 
 export default combineReducers({
-  callApiReducer,
-  authReducer
+  authReducer,
+  recordsReducer
 });

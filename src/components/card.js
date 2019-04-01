@@ -1,36 +1,21 @@
 import React from 'react';
 
-// const renderIcons = (props) => {
-//   if (props.user === 'owner'){
-//     return (
-
-//     )
-//   } else return (
-//     <div className="row-icons">
-//       <p className="type">Red flag</p>
-//       <div className="buttons">
-//         <i className="fa fa-edit sm-icon sm-icon-edit" aria-hidden="true"></i>
-//         <i className="fa fa-trash sm-icon sm-icon-delete" aria-hidden="true"></i>
-//       </div>
-//     </div>
-//   )
-// }
-
 export default (props) => {
+  const { record } = props;
   return (
     <div className="card-wrap">
       <div className="card">
         <a href="#modal"><img src="https://images.pexels.com/photos/1464220/pexels-photo-1464220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" className="card-img"/></a>
         <div>
-          <p>Lorem ipsum dolorf sit amet, consectetur adipiscing elit. Sed at efficitur nisl. </p>
+          <p>{record.comment.substring(0, 40)}</p>
         </div>
         <div className="row-icons"> 
-          <p className="type">Red flag</p>
+          <p className="type">{record.type}</p>
           {
             props.user === 'owner' ? (
               <div className="buttons">
-                <i className="fa fa-edit sm-icon sm-icon-edit" aria-hidden="true"></i>
-                <i className="fa fa-trash sm-icon sm-icon-delete" aria-hidden="true"></i>
+                <i className="fa fa-edit sm-icon sm-icon-edit" aria-hidden="true" />
+                <i className="fa fa-trash sm-icon sm-icon-delete" aria-hidden="true" />
               </div>
             ) : null
           }
@@ -44,11 +29,10 @@ export default (props) => {
               src="https://images.pexels.com/photos/1464220/pexels-photo-1464220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
               className="modal-img"/>
             <div className="modal-record-details">
-              <h2 className="modal-record-type">Red flag</h2>
-              <p>by olamilekan</p>
+              <h2 className="modal-record-type">{record.type}</h2>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <h2 className="modal-record-type">Comment</h2>
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <p>{record.comment}</p>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <div className="select-status">
                 <div className="selects">
@@ -64,11 +48,11 @@ export default (props) => {
               <div className="row-plain">
                 <div>
                   <h2 className="modal-record-type">Location</h2>
-                  <p>Lagos, Nigeria</p>
+                  <p>{record.location}</p>
                 </div>
                 <div>
                   <h2 className="modal-record-type">Status</h2>
-                  <p>Under Investigation</p>
+                  <p>{record.status}</p>
                 </div>
               </div>
             </div>

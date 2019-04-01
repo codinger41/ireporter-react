@@ -4,7 +4,7 @@
   align-content: center;
   align-items: center;
   justify-content: center;
-  height: 700px;
+  height: 800px;
   background: #1C6663;
   flex-direction: column;
 }
@@ -25,6 +25,11 @@
 .fa { 
   color: #222;
   margin: 6px;
+}
+
+.center-spinner {
+  margin: auto;
+  width: 100px;
 }
 
 
@@ -204,7 +209,7 @@ footer {
   border: 1px solid #ddd;
   border-radius: 20px;
   text-align: center;
-  width: 350px;
+  width: 400px;
   height: 400px;
 }
 
@@ -216,9 +221,12 @@ footer {
   background-color: #eee;
   border: 1px solid #ddd;
   border-radius: 20px;
+  align-content: center;
+  align-items: center;
   text-align: center;
-  width: 350px;
-  height: 470px;
+  width: 420px;
+  height: 600px;
+  margin-top: 100px
 }
 
 textarea {

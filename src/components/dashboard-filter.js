@@ -13,12 +13,12 @@ export default () => {
       <div className="selects">
         <select>
           <option>Status</option>
-          <option value="1">Under Investigation</option>
+          <option value="1">Draft</option>
           <option value="2">Resolved</option>
           <option value="3">Rejected</option>
         </select>
       </div>
-      <button className="filter-button" >Filter</button>
+      <button className="filter-button">Filter</button>
     </div>
   );
 };
