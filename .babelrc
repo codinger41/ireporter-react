@@ -1,20 +1,7 @@
 {
   "presets": [
-    "es2015",
-    "react",
-    "stage-1"
+      "@babel/preset-env",
+      "@babel/preset-react"
   ],
-  "env": {
-    "development": {
-      "presets": [
-        "react-hmre"
-      ]
-    },
-    "production": {
-      "plugins": [
-        "transform-react-constant-elements",
-        "transform-react-remove-prop-types"
-      ]
-    }
-  }
+  "plugins": ["transform-object-rest-spread"]
 }

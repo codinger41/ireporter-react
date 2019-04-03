@@ -1,18 +1,21 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable react/display-name */
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default (props) => {
-  const { record } = props;
+const Card = (props) => {
+  const { record, user } = props;
   return (
     <div className="card-wrap">
       <div className="card">
-        <a href="#modal"><img src="https://images.pexels.com/photos/1464220/pexels-photo-1464220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" className="card-img"/></a>
+        <a href="#modal"><img src="https://images.pexels.com/photos/1464220/pexels-photo-1464220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" className="card-img" /></a>
         <div>
           <p>{record.comment.substring(0, 40)}</p>
         </div>
-        <div className="row-icons"> 
+        <div className="row-icons">
           <p className="type">{record.type}</p>
           {
-            props.user === 'owner' ? (
+            user === 'owner' ? (
               <div className="buttons">
                 <i className="fa fa-edit sm-icon sm-icon-edit" aria-hidden="true" />
                 <i className="fa fa-trash sm-icon sm-icon-delete" aria-hidden="true" />
@@ -26,25 +29,29 @@ export default (props) => {
           <a href="#close" className="close">&times;</a>
           <div className="modal-content">
             <img
-              src="https://images.pexels.com/photos/1464220/pexels-photo-1464220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" 
-              className="modal-img"/>
+              src="https://images.pexels.com/photos/1464220/pexels-photo-1464220.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+              className="modal-img" />
             <div className="modal-record-details">
               <h2 className="modal-record-type">{record.type}</h2>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <h2 className="modal-record-type">Comment</h2>
               <p>{record.comment}</p>
               &nbsp;&nbsp;&nbsp;&nbsp;
-              <div className="select-status">
-                <div className="selects">
-                  <select>
-                    <option>Change status</option>
-                    <option value="1">Under Investigation</option>
-                    <option value="2">Resolved</option>
-                    <option value="2">Rejected</option>
-                  </select>
-                </div>
-                <button className="status-update-button" >Update status</button>
-              </div>
+              {
+                user === 'admin' ? (
+                  <div className="select-status">
+                    <div className="selects">
+                      <select>
+                        <option>Change status</option>
+                        <option value="1">Under Investigation</option>
+                        <option value="2">Resolved</option>
+                        <option value="2">Rejected</option>
+                      </select>
+                    </div>
+                    <button className="status-update-button">Update status</button>
+                  </div>
+                ) : null
+              }
               <div className="row-plain">
                 <div>
                   <h2 className="modal-record-type">Location</h2>
@@ -62,3 +69,10 @@ export default (props) => {
     </div>
   );
 };
+
+Card.propTypes = {
+  record: PropTypes.object.isRequired,
+  user: PropTypes.object.isRequired
+};
+
+export default Card;

@@ -1,14 +1,16 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable import/named */
-import React, { useState } from "react";
-import { ToastContainer } from "react-toastify";
-import { connect } from "react-redux";
-import Spinner from "../components/spinner";
-import "../../src/styles/new-record.css";
-import { createRecord } from "../actions/records";
-import { failureToast, successToast } from "../actions/toast";
+import React, { useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import Spinner from '../components/spinner';
+import '../styles/new-record.css';
+import { createRecord } from '../actions/records';
+import { failureToast, successToast } from '../actions/toast';
 // import { Link } from "react-router-dom";
 
-const newRecord = props => {
+const newRecord = (props) => {
   const [recordData, setRecordData] = useState({
     location: null,
     comment: null,
@@ -16,8 +18,22 @@ const newRecord = props => {
   });
   const [loading, setLoading] = useState(false);
 
-  const updateInput = e => {
+  const updateInput = (e) => {
     setRecordData({ ...recordData, [e.target.name]: e.target.value });
+  };
+
+  const create = () => {
+    props.createRecord(recordData, recordData.type).then((res) => {
+      const { error } = res;
+      if (error) {
+        setLoading(false);
+        if (Array.isArray(error)) {
+          return error.forEach(err => props.failureToast(err));
+        }
+        return props.failureToast(error);
+      }
+      props.history.push('/profile');
+    });
   };
 
   const validateUserData = (e) => {
@@ -25,29 +41,13 @@ const newRecord = props => {
     setLoading(true);
     const fieldsArr = Object.entries(recordData);
     const errors = [];
-    fieldsArr.forEach(field => {
+    fieldsArr.forEach((field) => {
       if (!field[1]) {
         errors.push(`${field[0]} is required.`);
         props.failureToast(`${field[0]} is required.`);
       }
     });
     return errors.length < 1 ? create() : setLoading(false);
-  };
-
-  const create = () => {
-    props.createRecord(recordData, recordData.type).then(res => {
-      const { error } = res;
-      if (error) {
-        setLoading(false);
-        if(Array.isArray(error)) {
-          return error.forEach(err => props.failureToast(err));
-        } else {
-          return props.failureToast(error);
-        }
-      } else {
-        props.history.push('/profile');
-      }
-    });
   };
 
   return (
@@ -70,11 +70,11 @@ const newRecord = props => {
           name="comment"
           required
           onChange={updateInput}
-        ></textarea>
+         />
         <p className="upload-txt">upload proof (optional)</p>
-        <input 
-          id="upload" 
-          type="file" 
+        <input
+          id="upload"
+          type="file"
           name="file-upload"
         />
         <input
@@ -96,6 +96,12 @@ const newRecord = props => {
       </form>
     </div>
   );
+};
+
+newRecord.propTypes = {
+  createRecord: PropTypes.func.isRequired,
+  failureToast: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
 export default connect(() => ({}), { createRecord, successToast, failureToast })(newRecord);

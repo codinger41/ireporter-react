@@ -1,19 +1,19 @@
 /* eslint-disable import/default */
 import 'babel-polyfill';
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter, Route } from "react-router-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import thunk from 'redux-thunk';
-import Routes from "./routes";
 import { Provider } from 'react-redux';
 import jwt from 'jsonwebtoken';
-import { CURRENT_USER } from './actions/actionTypes';
 import { createStore, applyMiddleware, compose } from 'redux';
-import Header from "./components/header";
-import Footer from "./components/footer";
-import rootReducer from "./reducers/rootReducer";
-import "./styles/styles.css";
-import "font-awesome/css/font-awesome.css";
+import { CURRENT_USER } from './actions/actionTypes';
+import Routes from './routes';
+import Header from './components/header';
+import Footer from './components/footer';
+import rootReducer from './reducers/rootReducer';
+import './styles/styles.css';
+import 'font-awesome/css/font-awesome.css';
 
 const store = createStore(
   rootReducer,
@@ -23,7 +23,7 @@ const store = createStore(
   )
 );
 
-const token = localStorage.token;
+const { token } = localStorage;
 if (token) {
   store.dispatch({
     type: CURRENT_USER,
@@ -31,18 +31,16 @@ if (token) {
   });
 }
 
-const App = () => {
-  return (
-    <Provider store={store} >
-      <BrowserRouter>
-        <div>
-          <Route component={Header} />
-          <Route component={Routes} />
-          <Route component={Footer} />
-        </div>
-      </BrowserRouter>
-    </Provider>
-  );
-};
+const App = () => (
+  <Provider store={store}>
+    <BrowserRouter>
+      <div>
+        <Route component={Header} />
+        <Route component={Routes} />
+        <Route component={Footer} />
+      </div>
+    </BrowserRouter>
+  </Provider>
+);
 
-ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById('app'));

@@ -1,24 +1,26 @@
 /* eslint-disable import/namespace */
 /* eslint-disable import/named */
-import React, { useEffect, useState } from "react";
-import { connect } from "react-redux";
-import { getMyRecords } from "../actions/records";
-import Stats from "../components/dashboard-stats";
-import Filter from "../components/dashboard-filter";
-import Card from "../components/card";
-import Spinner from "../components/spinner";
+import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getMyRecords } from '../actions/records';
+import Stats from '../components/dashboard-stats';
+import Card from '../components/card';
+import Spinner from '../components/spinner';
 
 
-const mapRecords = records => records.map(
-  record =>
+const mapRecords = (records, isadmin) => records.map(
+  record => (
     <Card
       key={record.id}
       record={record}
-      user="owner"
+      user={isadmin ? 'admin' : 'owner'}
     />
+  )
 );
 
-const Profile = props => {
+const Profile = (props) => {
+  const { userIsAnAdmin, records } = props;
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
@@ -30,23 +32,27 @@ const Profile = props => {
   return (
     <div className="body">
       <Stats />
-      <Filter />
       <div className="card-grid">
-      {
+        {
           loading ? (
             <div className="center-spinner">
-              <Spinner loading={true}/>
+              <Spinner loading />
             </div>
-          ) : <div>{mapRecords(props.records)}</div>
+          ) : <div>{mapRecords(records, userIsAnAdmin)}</div>
       }
       </div>
     </div>
   );
 };
-const mapStateToProps = state => {
-  return {
-    records: state.recordsReducer.myRecords
-  };
+const mapStateToProps = state => ({
+  records: state.recordsReducer.myRecords,
+  userIsAnAdmin: state.authReducer.user.isadmin
+});
+
+Profile.propTypes = {
+  getMyRecords: PropTypes.func.isRequired,
+  records: PropTypes.object.isRequired,
+  userIsAnAdmin: PropTypes.bool.isRequired
 };
 
 export default connect(mapStateToProps, { getMyRecords })(Profile);
