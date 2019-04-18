@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { SIGN_UP, SIGN_IN, LOGOUT } from './actionTypes';
 
-const apiUrl = 'http://localhost:4000';
+const apiUrl = 'https://ireporter-backend-leks.herokuapp.com';
 
 
 export const signupUser = userData => async (dispatch) => {
