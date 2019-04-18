@@ -2,7 +2,7 @@ import axios from 'axios';
 import jwt from 'jsonwebtoken';
 import { CREATE_RECORD, MY_RECORDS } from './actionTypes';
 
-const apiUrl = 'http://localhost:4000';
+const apiUrl = 'https://ireporter-backend-leks.herokuapp.com';
 
 export const createRecord = (recordData, type) => async (dispatch) => {
   try {
