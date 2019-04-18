@@ -39,4 +39,4 @@ Redux: State management library
 
 
 ## Testing
-- To run server side test, run `yarn test`
+- To run test, run `yarn test`
