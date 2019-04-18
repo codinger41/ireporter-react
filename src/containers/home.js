@@ -1,8 +1,6 @@
 /* eslint-disable global-require */
 /* eslint-disable jsx-a11y/alt-text */
 import React from 'react';
-import { connect } from 'react-redux';
-
 
 const Home = () => (
   <div className="boxes">
@@ -22,4 +20,4 @@ const Home = () => (
   </div>
 );
 
-export default connect(() => ({}), {})(Home);
+export default Home;

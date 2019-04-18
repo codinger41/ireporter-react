@@ -34,7 +34,11 @@ const mapStateToProps = state => ({
 });
 
 Stats.propTypes = {
-  records: PropTypes.array.isRequired,
+  records: PropTypes.array
+};
+
+Stats.defaultProps = {
+  records: []
 };
 
 export default connect(() => mapStateToProps, {})(Stats);
