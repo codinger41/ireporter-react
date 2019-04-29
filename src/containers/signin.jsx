@@ -30,7 +30,7 @@ const Signin = (props) => {
 
   const completeSignin = () => {
     props.signinUser(userData).then((res) => {
-      const { error } = res;
+      const { error, isadmin } = res;
       if (error) {
         setLoading(false);
         if (Array.isArray(error)) {
@@ -38,7 +38,10 @@ const Signin = (props) => {
         }
         return props.failureToast(error);
       }
-      props.history.push('/profile');
+      if (isadmin) {
+        return props.history.push('/admin');
+      }
+      return props.history.push('/profile');
     });
   };
 

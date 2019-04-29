@@ -3,22 +3,30 @@ import { mount } from 'enzyme';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import configureStore from 'redux-mock-store';
-import Stats from '../../src/components/dashboard-stats';
+import { BrowserRouter } from 'react-router-dom';
+import NewRecord from '../../src/containers/new-record';
 
-describe('Stats component', () => {
+describe('New record component', () => {
   const mockStore = configureStore([thunk]);
   const store = mockStore({
     recordsReducer: {
       records: []
+    },
+    authReducer: {
+      isLoggedIn: false,
+      user: {
+        isadmin: true
+      }
     }
   });
   it('should render without crashing', () => {
     const wrapper = mount(
       <Provider store={store}>
-        <Stats records={[]} />
+        <BrowserRouter>
+          <NewRecord />
+        </BrowserRouter>
       </Provider>
     );
-    expect(wrapper.find('.row-plain').exists()).toBe(true);
-    expect(wrapper.find('.user-record-stats').exists()).toBe(true);
+    expect(wrapper.find('.boxes').exists()).toBe(true);
   });
 });

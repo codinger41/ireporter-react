@@ -41,7 +41,7 @@ const Header = (props) => {
           )
         }
         {
-         isadmin
+        isadmin
           && (
           <li>
             <Link to="/admin" className="nav-links">Admin</Link>
@@ -57,7 +57,7 @@ const Header = (props) => {
           )
         }
         {
-          isLoggedIn
+          (isLoggedIn && !isadmin)
           && (
           <li>
             <Link to="/profile" className="nav-links">My Profile</Link>

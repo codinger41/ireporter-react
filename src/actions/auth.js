@@ -13,7 +13,7 @@ export const signupUser = userData => async (dispatch) => {
       user: data.data[0].user,
       isLoggedIn: true
     });
-    return data;
+    return data.data[0].user;
   } catch (error) {
     return error.response.data;
   }
@@ -27,7 +27,7 @@ export const signinUser = userData => async (dispatch) => {
       type: SIGN_IN,
       user: data.data[0].user
     });
-    return data;
+    return data.data[0].user;
   } catch (error) {
     return error.response.data;
   }
