@@ -1,11 +1,8 @@
 /* eslint-disable prefer-destructuring */
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import dotenv from 'dotenv';
 import { CREATE_RECORD, MY_RECORDS } from './actionTypes';
 
-
-dotenv.config();
 
 const apiUrl = process.env.API_URL;
 

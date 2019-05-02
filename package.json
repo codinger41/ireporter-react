@@ -8,10 +8,11 @@
   "scripts": {
     "webpack": "webpack",
     "build:dev": "webpack --env.mode development --open",
-    "build": "webpack --env.mode production",
+    "build": "webpack --env.mode development --open",
     "start:dev": "webpack-dev-server --env.mode development --open",
     "start:prod": "node server.js",
-    "postinstall": "npm run build",
+    "postinstall": "npm run set-env && npm run build",
+    "set-env": "touch .env && echo API_URL=https://ireporter-backend-leks.herokuapp.com >> .env",
     "lint": "eslint . --ext .js,.jsx --fix",
     "test": "jest --updateSnapshot",
     "test:coverage": "jest --coverage --colors --updateSnapshot"
@@ -22,7 +23,7 @@
     "autoprefixer": "^9.5.0",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
-    "dotenv": "^7.0.0",
+    "dotenv-webpack": "^1.7.0",
     "express": "^4.16.4",
     "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^3.2.0",

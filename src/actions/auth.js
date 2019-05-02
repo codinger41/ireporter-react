@@ -1,8 +1,6 @@
 import axios from 'axios';
-import dotenv from 'dotenv';
 import { SIGN_UP, SIGN_IN, LOGOUT } from './actionTypes';
 
-dotenv.config();
 
 const apiUrl = process.env.API_URL;
 
