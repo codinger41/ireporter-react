@@ -1,7 +1,13 @@
 /* eslint-disable: no-undef */
 module.exports = {
   clearMocks: true,
-  collectCoverageFrom: ['src/components/**/*.{js,jsx,mjs}'],
+  collectCoverageFrom: [
+    'src/components/**/*.{js,jsx,mjs}',
+    'src/reducers/**/*.{js,jsx,mjs}',
+    'src/actions/**/*.{js,jsx,mjs}',
+    '!src/index.js',
+    '!src/routes.js'
+  ],
   coverageDirectory: 'coverage',
   moduleFileExtensions: ['js', 'json', 'jsx'],
   moduleNameMapper: {

@@ -1,8 +1,13 @@
+/* eslint-disable prefer-destructuring */
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { CREATE_RECORD, MY_RECORDS } from './actionTypes';
 
-const apiUrl = 'https://ireporter-backend-leks.herokuapp.com';
+
+dotenv.config();
+
+const apiUrl = process.env.API_URL;
 
 export const createRecord = (recordData, type) => async (dispatch) => {
   try {
@@ -39,7 +44,11 @@ export const createRecord = (recordData, type) => async (dispatch) => {
 export const getMyRecords = () => async (dispatch) => {
   try {
     const token = localStorage.getItem('token');
-    const { id } = jwt.decode(token);
+    let id;
+    if (token) {
+      const data = jwt.decode(token);
+      id = data.id;
+    }
     const { data } = await axios.get(
       `${apiUrl}/api/v1/myRecords?fieldName=createdby&fieldValue=${id}`,
       {

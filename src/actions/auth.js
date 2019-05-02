@@ -1,7 +1,10 @@
 import axios from 'axios';
+import dotenv from 'dotenv';
 import { SIGN_UP, SIGN_IN, LOGOUT } from './actionTypes';
 
-const apiUrl = 'https://ireporter-backend-leks.herokuapp.com';
+dotenv.config();
+
+const apiUrl = process.env.API_URL;
 
 
 export const signupUser = userData => async (dispatch) => {
