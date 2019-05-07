@@ -1,7 +1,9 @@
 /* eslint-disable prefer-destructuring */
 import axios from 'axios';
 import jwt from 'jsonwebtoken';
-import { CREATE_RECORD, MY_RECORDS, SINGLE_RECORD } from './actionTypes';
+import {
+  CREATE_RECORD, MY_RECORDS, SINGLE_RECORD, EDIT_RECORD, DELETE_RECORD
+} from './actionTypes';
 
 
 const apiUrl = process.env.API_URL;
@@ -113,6 +115,9 @@ export const editRecord = (id, type, recordData) => async (dispatch) => {
         'x-access-token': token
       }
     });
+    dispatch({
+      type: EDIT_RECORD
+    });
     return data;
   } catch (error) {
     return error.response.data;
@@ -133,12 +138,14 @@ export const deleteRecord = (id, type) => async (dispatch) => {
         'x-access-token': token
       }
     });
+    dispatch({
+      type: DELETE_RECORD
+    });
     dispatch(getMyRecords());
     return data;
   } catch (error) {
     dispatch({
-      type: SINGLE_RECORD,
-      record: {}
+      type: DELETE_RECORD
     });
     return error.response.data;
   }
