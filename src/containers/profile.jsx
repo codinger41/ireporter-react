@@ -9,10 +9,11 @@ import Card from '../components/card';
 import Spinner from '../components/spinner';
 
 
-const mapRecords = (records, isadmin) => records.map(
+const mapRecords = (records, isadmin, history) => records.map(
   record => (
     <Card
       key={record.id}
+      history={history}
       record={record}
       user={isadmin ? 'admin' : 'owner'}
     />
@@ -20,7 +21,7 @@ const mapRecords = (records, isadmin) => records.map(
 );
 
 const Profile = (props) => {
-  const { userIsAnAdmin, records } = props;
+  const { userIsAnAdmin, records, history } = props;
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setLoading(true);
@@ -38,7 +39,7 @@ const Profile = (props) => {
             <div className="center-spinner">
               <Spinner loading />
             </div>
-          ) : <div>{mapRecords(records, userIsAnAdmin)}</div>
+          ) : <div>{mapRecords(records, userIsAnAdmin, history)}</div>
       }
       </div>
     </div>
@@ -52,6 +53,7 @@ const mapStateToProps = state => ({
 Profile.propTypes = {
   getMyRecords: PropTypes.func.isRequired,
   records: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
   userIsAnAdmin: PropTypes.bool.isRequired
 };
 

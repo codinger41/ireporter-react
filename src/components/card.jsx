@@ -1,10 +1,19 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable react/display-name */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { deleteRecord } from '../actions/records';
 
 const Card = (props) => {
-  const { record, user } = props;
+  const { record, user, history } = props;
+
+  const runDelete = async () => {
+    await props.deleteRecord(record.id, record.type);
+    history.push('/profile');
+  };
+
   return (
     <div className="card-wrap">
       <div className="card">
@@ -17,8 +26,19 @@ const Card = (props) => {
           {
             user === 'owner' ? (
               <div className="buttons">
-                <i className="fa fa-edit sm-icon sm-icon-edit" aria-hidden="true" />
-                <i className="fa fa-trash sm-icon sm-icon-delete" aria-hidden="true" />
+                <button
+                  onClick={() => history.push(`/edit/${record.type}/${record.id}/`)}
+                >
+                  <i
+                    className="fa fa-edit sm-icon sm-icon-edit"
+                    aria-hidden="true"
+                  />
+                </button>
+                <button
+                  onClick={() => runDelete()}
+                >
+                  <i className="fa fa-trash sm-icon sm-icon-delete" aria-hidden="true" />
+                </button>
               </div>
             ) : null
           }
@@ -72,7 +92,8 @@ const Card = (props) => {
 
 Card.propTypes = {
   record: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired
+  user: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired
 };
 
-export default Card;
+export default connect(() => ({}), { deleteRecord })(Card);

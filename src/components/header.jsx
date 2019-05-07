@@ -2,7 +2,7 @@
 /* eslint-disable import/named */
 /* eslint-disable import/namespace */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logOut } from '../actions/auth';
@@ -15,6 +15,16 @@ const Header = (props) => {
     props.logOut();
     props.history.push('/');
   };
+
+  useEffect(() => {
+    const mainNav = document.getElementById('js-menu');
+    const navBarToggle = document.getElementById('js-navbar-toggle');
+    if (navBarToggle) {
+      navBarToggle.addEventListener('click', () => {
+        mainNav.classList.toggle('active');
+      });
+    }
+  }, []);
 
   return (
     <nav className="navbar">

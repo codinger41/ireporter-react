@@ -1,29 +1,47 @@
-/* eslint-disable react/jsx-no-bind */
-/* eslint-disable import/named */
-import React, { useState } from 'react';
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react';
 import { ToastContainer } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../components/spinner';
 import '../styles/new-record.css';
-import { createRecord } from '../actions/records';
+import { getSingleRecord, editRecord } from '../actions/records';
 import { failureToast, successToast } from '../actions/toast';
-// import { Link } from "react-router-dom";
 
-const newRecord = (props) => {
-  const [recordData, setRecordData] = useState({
-    location: null,
-    comment: null,
-    type: null
-  });
+const Edit = (props) => {
+  // const { record } = props;
   const [loading, setLoading] = useState(false);
+  const [recordData, setRecordData] = useState({
+    location: '',
+    comment: '',
+    type: ''
+  });
+
+  const { match: { params: { id, type } } } = props;
+
+  useEffect(() => {
+    setLoading(true);
+    props.getSingleRecord(id, type).then((res) => {
+      if (res.status === 200) {
+        const record = res.data[0];
+        setRecordData({
+          location: record.location,
+          comment: record.comment,
+          type: record.type
+        });
+      } else {
+        props.history.push('/404');
+      }
+      setLoading(false);
+    });
+  }, []);
 
   const updateInput = (e) => {
     setRecordData({ ...recordData, [e.target.name]: e.target.value });
   };
 
-  const create = () => {
-    props.createRecord(recordData, recordData.type).then((res) => {
+  const edit = () => {
+    props.editRecord(id, type, recordData).then((res) => {
       const { error } = res;
       if (error) {
         setLoading(false);
@@ -47,7 +65,8 @@ const newRecord = (props) => {
         props.failureToast(`${field[0]} is required.`);
       }
     });
-    return errors.length < 1 ? create() : setLoading(false);
+    // return errors.length < 1 ? create() : setLoading(false);
+    return errors.length < 1 ? edit() : setLoading(false);
   };
 
   return (
@@ -58,7 +77,7 @@ const newRecord = (props) => {
       </div>
       <form className="new-record">
         <span className="custom-dropdown">
-          <select name="type" onChange={updateInput}>
+          <select value={recordData.type} name="type" onChange={updateInput}>
             <option>Select record type</option>
             <option value="red-flag">Red flag</option>
             <option value="intervention">Intervention</option>
@@ -66,9 +85,9 @@ const newRecord = (props) => {
         </span>
         <textarea
           type="text"
-          placeholder="Comment"
           name="comment"
           required
+          value={recordData.comment}
           onChange={updateInput}
         />
         <p className="upload-txt">upload proof (optional)</p>
@@ -79,8 +98,8 @@ const newRecord = (props) => {
         />
         <input
           type="text"
-          placeholder="Location; where did this happen?"
           onChange={updateInput}
+          value={recordData.location}
           name="location"
         />
         <div className="btns">
@@ -89,7 +108,7 @@ const newRecord = (props) => {
             onClick={validateUserData}
           >
             {
-              loading ? <Spinner loading={loading} /> : <h3 className="signin-txt"> Create record </h3>
+              loading ? <Spinner loading={loading} /> : <h3 className="signin-txt"> Edit record </h3>
             }
           </button>
         </div>
@@ -98,10 +117,20 @@ const newRecord = (props) => {
   );
 };
 
-newRecord.propTypes = {
-  createRecord: PropTypes.func.isRequired,
-  failureToast: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+const mapStateToProps = state => ({
+  record: state.recordsReducer.singleRecord
+});
+
+const mapDispatchToProps = {
+  getSingleRecord,
+  failureToast,
+  successToast,
+  editRecord
 };
 
-export default connect(() => ({}), { createRecord, successToast, failureToast })(newRecord);
+Edit.propTypes = {
+  getSingleRecord: PropTypes.func.isRequired,
+  failureToast: PropTypes.func.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Edit);

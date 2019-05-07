@@ -9,6 +9,8 @@ import Signin from './containers/signin';
 import Profile from './containers/profile';
 import NewRecord from './containers/new-record';
 import RequiresAuth from './components/authWrapper';
+import Edit from './containers/edit-record';
+import NotFound from './containers/404';
 
 const Router = (props) => {
   const { isLoggedIn, user } = props;
@@ -17,11 +19,17 @@ const Router = (props) => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/404" component={NotFound} />
         <Route exact path="/signin" component={Signin} />
         <RequiresAuth
           path="/profile"
           auth={isLoggedIn}
           component={Profile}
+        />
+        <RequiresAuth
+          path="/edit/:type/:id"
+          auth={isLoggedIn}
+          component={Edit}
         />
         <RequiresAuth
           path="/admin"

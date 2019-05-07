@@ -7,3 +7,4 @@ export const CURRENT_USER = 'CURRENT_USER';
 export const LOGOUT = 'LOGOUT';
 export const CREATE_RECORD = 'CREATE_RECORD';
 export const MY_RECORDS = 'MY_RECORDS';
+export const SINGLE_RECORD = 'SINGLE_RECORD';
